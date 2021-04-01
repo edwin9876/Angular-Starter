@@ -9,6 +9,17 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'details/:id', component: HeroDetailsComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  {
+    path: 'customers',
+    loadChildren: () =>
+      import('./customers/customers.module').then((m) => m.CustomersModule),
+  },
+  {
+    path: 'orders',
+    loadChildren: () =>
+      import('./orders/orders.module').then((m) => m.OrdersModule),
+  },
+  { path: 'demons', loadChildren: () => import('./demons/demons.module').then(m => m.DemonsModule) },
 ];
 
 @NgModule({

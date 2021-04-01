@@ -1,0 +1,21 @@
+<div>
+  <label id="new-demon">Demon name: </label>
+  <input for="new-demon" #demonName />
+  <button
+    class="add-button"
+    (click)="addDemon(demonName.value); demonName.value = ''"
+  >
+    add Demon
+  </button>
+</div>
+
+<ul class="demons">
+  <li *ngFor="let demon of demons">
+    <a routerLink="/details/{{ demon.id }}">
+      <span class="badge">{{ demon.id }}</span> {{ demon.name }}
+    </a>
+    <button class="delete" title="delete demon" (click)="delete(demon)">
+      x
+    </button>
+  </li>
+</ul>

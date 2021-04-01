@@ -5,4 +5,11 @@
   </a>
 </div>
 
+<h2>Top Demons</h2>
+<div class="heroes-menu">
+  <a *ngFor="let demon of demons" routerLink="/details/{{ demon.id }}">
+    {{ demon.name }}
+  </a>
+</div>
+
 <app-hero-search></app-hero-search>
