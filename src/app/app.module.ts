@@ -14,6 +14,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-form-question.component';
+import { HighlightDirective } from './highlight.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-fo
     HeroSearchComponent,
     DynamicFormComponent,
     DynamicFormQuestionComponent,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,

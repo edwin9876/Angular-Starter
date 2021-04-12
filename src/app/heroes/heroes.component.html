@@ -16,3 +16,10 @@
     <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
   </li>
 </ul>
+
+<div
+*ngFor="let hero of heroes; let i=index; let odd=odd; "
+[class.odd]="odd"
+>
+({{i}}) {{hero.name}}
+</div>
