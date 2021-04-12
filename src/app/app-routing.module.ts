@@ -10,16 +10,16 @@ const routes: Routes = [
   { path: 'details/:id', component: HeroDetailsComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
-    path: 'customers',
-    loadChildren: () =>
-      import('./customers/customers.module').then((m) => m.CustomersModule),
-  },
-  {
     path: 'orders',
     loadChildren: () =>
       import('./orders/orders.module').then((m) => m.OrdersModule),
   },
-  { path: 'demons', loadChildren: () => import('./demons/demons.module').then(m => m.DemonsModule) },
+  {
+    path: 'demons',
+    loadChildren: () =>
+      import('./demons/demons.module').then((m) => m.DemonsModule),
+  },
+  { path: 'form', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
 ];
 
 @NgModule({

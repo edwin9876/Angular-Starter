@@ -1,0 +1,50 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <label> First Name: </label>
+  <input type="text" formControlName="firstName" required />
+
+  <label> Last Name: </label>
+  <input type="text" formControlName="lastName" />
+  <div formGroupName="address">
+    <h3>Address</h3>
+
+    <label> Street: </label>
+    <input type="text" formControlName="street" />
+
+    <label> City: </label>
+    <input type="text" formControlName="city" />
+
+    <label> State: </label>
+    <input type="text" formControlName="state" />
+
+    <label> Zip Code: </label>
+    <input type="text" formControlName="zip" />
+  </div>
+
+  <div formArrayName="aliases">
+    <h3>Aliases</h3>
+    <button (click)="addAlias()">Add Alias</button>
+
+    <div *ngFor="let alias of aliases.controls; let i = index">
+      <!-- The repeated alias template -->
+      <label>
+        Alias:
+        <input type="text" [formControlName]="i" />
+      </label>
+    </div>
+  </div>
+  <div
+    *ngIf="
+      profileForm.errors?.identityRevealed &&
+      (profileForm.touched || profileForm.dirty)
+    "
+    class="cross-validation-error-message alert alert-danger"
+  >
+    Name cannot match alter ego.
+  </div>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
+<p>
+  <button (click)="updateProfile()">Update Profile</button>
+</p>
+<p>Form Value: {{ profileForm.value | json }}</p>
+<p>Form Status: {{ profileForm.status }}</p>
