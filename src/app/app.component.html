@@ -8,3 +8,26 @@
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
+<h1>My First Attribute Directive</h1>
+
+<h2>Pick a highlight color</h2>
+<div>
+  <input type="radio" name="colors" (click)="color='lightgreen'">Green
+  <input type="radio" name="colors" (click)="color='yellow'">Yellow
+  <input type="radio" name="colors" (click)="color='cyan'">Cyan
+</div>
+<p [appHighlight]="color" defaultColor="violet">Highlight me!</p>
+<h3>ngNonBindable with a directive</h3>
+<div ngNonBindable [appHighlight]="'yellow'">This should not evaluate: {{ 1 +1 }}, but will highlight yellow.
+</div>
+<div> ng-template works!</div>
+<ng-template>Inside ng-template tag</ng-template>
+
+
+<p>Hip!</p>
+<ng-template [ngIf]="color">
+  <p>Hip!</p>
+</ng-template>
+<p>Hooray!</p>
+
+
