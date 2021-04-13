@@ -11,5 +11,6 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  color?: string;
 
 }

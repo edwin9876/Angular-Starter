@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrdersComponent } from './orders.component';
+import { HighlightDirective } from './highlight.directive';
 
 
 @NgModule({
-  declarations: [OrdersComponent],
+  declarations: [OrdersComponent,    HighlightDirective,
+  ],
   imports: [
     CommonModule,
     OrdersRoutingModule

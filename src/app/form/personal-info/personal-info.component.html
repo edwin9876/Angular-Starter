@@ -1,0 +1,29 @@
+<form [formGroup]='personalInfo' (ngSubmit)='onSubmit()'>
+  <label> Name: </label>
+  <input type="text" formControlName="name" required />
+  <div formGroupName='stats'>
+    <label> Power: </label>
+  <input type="text" formControlName="power" required />
+    <label> Speed: </label>
+  <input type="text" formControlName="speed" required />
+    <label> Luck: </label>
+  <input type="text" formControlName="luck" required />
+    <label> IQ: </label>
+  <input type="text" formControlName="IQ" required />
+  </div>
+  <button type='submit'>submit</button>
+  <div formArrayName='weapons'>
+    <button (click)="addWeapon()">Add Weapon</button>
+
+    <div *ngFor="let weapon of weapons.controls; let i = index">
+      <!-- The repeated alias template -->
+      <label>
+        Weapon:
+        <input type="text" [formControlName]="i" />
+      </label>
+      <button (click)="removeWeapon(i)">X</button>
+    </div>
+  </div>
+</form>
+
+<p>Form Value: {{ personalInfo.value | json }}</p>
