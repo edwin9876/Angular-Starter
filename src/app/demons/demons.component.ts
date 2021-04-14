@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Demon } from '../demon';
-import { DemonsService } from '../demons.service';
+import { Demon } from '../services/demon';
+import { DemonsService } from '../services/demons.service';
 
 // const fs = require('fs');
 

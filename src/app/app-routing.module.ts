@@ -20,6 +20,8 @@ const routes: Routes = [
       import('./demons/demons.module').then((m) => m.DemonsModule),
   },
   { path: 'form', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
+  { path: 'login', loadChildren: () => import('./auth/components/login/login.module').then(m => m.LoginModule) },
+  { path: 'register', loadChildren: () => import('./auth/components/register/register.module').then(m => m.RegisterModule) },
 ];
 
 @NgModule({

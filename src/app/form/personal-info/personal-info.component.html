@@ -1,18 +1,18 @@
-<form [formGroup]='personalInfo' (ngSubmit)='onSubmit()'>
+<form [formGroup]="personalInfo" (ngSubmit)="onSubmit()">
   <label> Name: </label>
-  <input type="text" formControlName="name" required />
-  <div formGroupName='stats'>
+  <input type="text" formControlName="name" />
+  <div formGroupName="stats">
     <label> Power: </label>
-  <input type="text" formControlName="power" required />
+    <input type="text" formControlName="power" />
     <label> Speed: </label>
-  <input type="text" formControlName="speed" required />
+    <input type="text" formControlName="speed" />
     <label> Luck: </label>
-  <input type="text" formControlName="luck" required />
+    <input type="text" formControlName="luck" />
     <label> IQ: </label>
-  <input type="text" formControlName="IQ" required />
+    <input type="text" formControlName="IQ" />
   </div>
-  <button type='submit'>submit</button>
-  <div formArrayName='weapons'>
+  <button type="submit">submit</button>
+  <div formArrayName="weapons">
     <button (click)="addWeapon()">Add Weapon</button>
 
     <div *ngFor="let weapon of weapons.controls; let i = index">
@@ -24,6 +24,7 @@
       <button (click)="removeWeapon(i)">X</button>
     </div>
   </div>
+  <p>Form Status: {{ personalInfo.status }}</p>
 </form>
 
 <p>Form Value: {{ personalInfo.value | json }}</p>
