@@ -9,7 +9,7 @@ export class AuthService {
       ? JSON.parse(localStorage.getItem('userData')!)
       : null;
   }
-  setDataInLocalStorage(variableName: string, data) {
+  setDataInLocalStorage(variableName: string, data: string) {
     localStorage.setItem(variableName, data);
   }
   getToken() {

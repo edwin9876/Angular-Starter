@@ -34,9 +34,9 @@ import { AuthModule } from './auth/auth/auth.module';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-      dataEncapsulation: false,
-    }),
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+    //   dataEncapsulation: false,
+    // }),
     IonicModule.forRoot(),
     AuthModule,
   ],

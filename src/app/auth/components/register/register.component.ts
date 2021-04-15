@@ -1,8 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from './../../../services/api.service';
 import { AuthService } from './../../../services/auth.service';
-import { FormBuilder, NgForm } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { passwordValidator } from '../../validation';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -24,39 +31,72 @@ export class RegisterComponent implements OnInit {
     this.isUserLogin();
   }
 
-  registerForm = this.fb.group({
-    username: [''],
-    email: [''],
-    password: [''],
-  });
+  registerForm = this.fb.group(
+    {
+      userName: [''],
+      email: ['', [Validators.email, Validators.required]],
+      password: [''],
+      rePassword: [''],
+    },
+    { validators: passwordValidator }
+  );
 
   onSubmit() {
-    console.log('Your form data : ', this.registerForm.value);
     this._api
       .postTypeRequest('user/register', this.registerForm.value)
-      .subscribe(
-        (res: any) => {
-          if (res.status) {
-            console.log(res);
-            this._auth.setDataInLocalStorage(
-              'userData',
-              JSON.stringify(res.data)
-            );
-            this._auth.setDataInLocalStorage('token', res.token);
-            this._router.navigate(['login']);
-          } else {
-            console.log(res);
-            alert(res.msg);
-          }
-        },
-        (err) => {
-          this.errorMessage = err['error'].message;
-        }
-      );
+      .subscribe((res: any) => {
+        console.log(res);
+        //   if (res.status) {
+        //     console.log(res);
+        //     this._auth.setDataInLocalStorage(
+        //       'userData',
+        //       JSON.stringify(res.data)
+        //     );
+        //     this._auth.setDataInLocalStorage('token', res.token);
+        //     this._router.navigate(['login']);
+        //   } else {
+        //     console.log(res);
+        //     alert(res.msg);
+        //   }
+        // },
+        // (err) => {
+        //   this.errorMessage = err['error'].message;
+      });
   }
   isUserLogin() {
     if (this._auth.getUserDetails() != null) {
       this.isLogin = true;
     }
+  }
+
+  setDefaultForm() {
+    this.registerForm.patchValue({
+      userName: 'ee',
+      email: 'e@e.com',
+      password: '1',
+      rePassword: '1',
+    });
+
+    this._api.getTypeRequest('user').subscribe((res) => console.log(res));
+  }
+  promptErrors() {
+    Object.values(this.registerForm.controls).forEach(
+      (control: AbstractControl) => {
+        control.markAsTouched();
+      }
+    );
+    this.registerForm.patchValue({
+      userName: 'ee',
+      email: 'ee.com',
+      password: '1',
+      rePassword: '2',
+    });
+  }
+
+  get userName() {
+    return this.registerForm.get('userName')!;
+  }
+  get email() {
+    return this.registerForm.get('email')!;
   }
 }

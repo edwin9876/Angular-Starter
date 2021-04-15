@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, NgForm } from '@angular/forms';
 import { ApiService } from './../../../services/api.service';
 import { AuthService } from './../../../services/auth.service';
 import { Router } from '@angular/router';
@@ -14,14 +14,21 @@ export class LoginComponent implements OnInit {
   constructor(
     private _api: ApiService,
     private _auth: AuthService,
-    private _router: Router
+    private _router: Router,
+    private fb: FormBuilder
   ) {}
+
+  registerForm = this.fb.group({
+    username: [''],
+    password: [''],
+  });
+
   ngOnInit() {
     this.isUserLogin();
   }
-  onSubmit(form: NgForm) {
-    console.log('Your form data : ', form.value);
-    this._api.postTypeRequest('user/login', form.value).subscribe(
+  onSubmit() {
+    console.log('Your form data : ', this.registerForm.value);
+    this._api.postTypeRequest('user/login', this.registerForm.value).subscribe(
       (res: any) => {
         if (res.status) {
           console.log(res);
